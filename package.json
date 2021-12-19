@@ -26,6 +26,10 @@
         "vue-template-compiler": "^2.6.12"
     },
     "dependencies": {
+        "@alpinejs/intersect": "^3.7.0",
+        "@ryangjchandler/spruce": "^2.7.1",
+        "@tailwindcss/forms": "^0.4.0",
+        "alpinejs": "^3.7.0",
         "postcss-import": "^14.0.2"
     }
 }
