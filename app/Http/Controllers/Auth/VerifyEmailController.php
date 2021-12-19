@@ -25,7 +25,6 @@ class VerifyEmailController extends Controller
         }
 
         if ($request->user()->markEmailAsVerified()) {
-            dd('vari');
             event(new AccountCreated($request->user()));
             event(new Verified($request->user()));
         }
