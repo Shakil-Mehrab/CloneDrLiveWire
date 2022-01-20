@@ -151,23 +151,23 @@ class MagicLinkController extends Controller
             event(new Registered($user));
         }
 
-        try {
-            $groupsApi = (new MailerLite(config('services.mailerlite.api')))->groups();
+        // try {
+        //     $groupsApi = (new MailerLite(config('services.mailerlite.api')))->groups();
 
-            $subscriber = [
-                'email' => $user->email,
-                'fields' => [
-                    'name' => $user->getDisplayName('first'),
-                    'last_name' => $user->getDisplayName('last'),
-                    'company' => optional($user->account)->name,
-                ]
-            ];
+        //     $subscriber = [
+        //         'email' => $user->email,
+        //         'fields' => [
+        //             'name' => $user->getDisplayName('first'),
+        //             'last_name' => $user->getDisplayName('last'),
+        //             'company' => optional($user->account)->name,
+        //         ]
+        //     ];
 
-            //FIXME: This is a temporary fix for the MailerLite API.
-            // $response = $groupsApi->addSubscriber(config('services.mailerlite.groups.app_signup'), $subscriber);
-        } catch (\Exception $e) {
-            //exception $e;
-        }
+        //     //FIXME: This is a temporary fix for the MailerLite API.
+        //     // $response = $groupsApi->addSubscriber(config('services.mailerlite.groups.app_signup'), $subscriber);
+        // } catch (\Exception $e) {
+        //     //exception $e;
+        // }
 
         Auth::login($user, true);
 

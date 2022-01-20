@@ -26,6 +26,7 @@
         "vue-template-compiler": "^2.6.12"
     },
     "dependencies": {
+        "@tailwindcss/forms": "^0.4.0",
         "postcss-import": "^14.0.2"
     }
 }
