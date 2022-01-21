@@ -2,15 +2,16 @@
 
 namespace App\Models;
 
+use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
-use Laravel\Sanctum\HasApiTokens;
+use Lab404\Impersonate\Models\Impersonate;
 
-class User extends Authenticatable
+class User extends Authenticatable implements MustVerifyEmail
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasApiTokens, HasFactory, Notifiable,Impersonate;
 
     /**
      * The attributes that are mass assignable.
@@ -48,5 +49,52 @@ class User extends Authenticatable
     public function account()
     {
         return $this->belongsTo(Account::class);
+    }
+
+    public function roles()
+    {
+        return $this->settings['roles'] ?? ['user'];
+    }
+
+    public function hasRole($role)
+    {
+        if (in_array($role, $this->roles())) {
+            return true;
+        }
+        return false;
+    }
+
+    public function isSuper()
+    {
+        return $this->hasRole('super');
+    }
+
+    public function isAdmin()
+    {
+        if ($this->hasRole('admin')) {
+            return true;
+        }
+        if ($this->hasRole('super')) {
+            return true;
+        }
+        return false;
+    }
+
+    public function canImpersonate()
+    {
+        if ($this->isAdmin()) {
+            return true;
+        }
+        if (!empty($this->account->setting('impersonateEnabled'))) {
+            return true;
+        }
+        return false;
+    }
+    public function canBeImpersonated()
+    {
+        if ($this->isAdmin()) {
+            return false;
+        }
+        return true;
     }
 }

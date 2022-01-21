@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ColabController;
 use App\Http\Controllers\ConnectorController;
@@ -17,8 +18,12 @@ use App\Http\Controllers\Auth\MagicLinkController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
-});
+    if (Auth::check()) {
+        return redirect(route('colabs'));
+    }
+    return view('splash');
+})->name('splash');
+
 
 
 
@@ -64,5 +69,13 @@ Route::middleware(['auth', 'verified'])->prefix('connectors')->group(function ()
     Route::delete('{connector}', [ConnectorController::class, 'destroy'])->name('connector.destroy');
 });
 
+Route::middleware(['auth', 'verified'])->group(function () {
+    Route::get('/profile', [ProfileController::class, 'show'])->name('profile');
+});
 
+Route::middleware(['auth', 'verified'])->prefix('settings')->group(function () {
+    Route::get('/', [AccountController::class, 'index'])->name('account');
+    //TODO: unused
+    Route::put('{colab}', [AccountController::class, 'update'])->name('account.update');
+});
 require __DIR__ . '/auth.php';
