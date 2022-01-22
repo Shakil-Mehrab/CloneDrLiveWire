@@ -1,6 +1,10 @@
 <div>
-    <x-button.default wire:click.prevent="$set('showingModal', true)" type="button"><i
-            class="text-green-600 far fa-plus fa-2x"></i></x-button.default>
+    <x-button.default wire:click.prevent="$set('showingModal', true)" type="button">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24"
+            stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+        </svg>
+    </x-button.default>
 
     <x-new-modal wire:model="showingModal" maxWidth="md" justify="end" title="Add A Connecor">
         <div class="w-full" x-data="{ selected: false }">

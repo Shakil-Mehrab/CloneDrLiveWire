@@ -93,12 +93,8 @@
                 @php
                     $header = $header ?? null;
                 @endphp
-                {{-- <aside class=" m-8 mr-4 relative {{ $header ? '' : 'hidden' }}" x-data="{visibility:false}">
-                    <div class="pop-over absolute flex px-4 py-2 text-xs bg-white border rounded-full -top-4 right-24 lg:-right-64 z-[9999] {{ auth()->user()->account->myColabs->count() > 0
-                        ? 'hidden'
-                        : '' }}"
-                        x-show="visibility">
-                        Add a new Colab to get started. Click the + button</div>
+                <aside class=" m-8 mr-4 relative {{ $header ? '' : 'hidden' }}" x-data="{visibility:false}">
+
 
                     <div
                         class="relative flex flex-col flex-none h-full p-4 overflow-y-auto border-2 border-gray-200 border-dashed rounded-lg">
@@ -108,7 +104,7 @@
                         </div>
                         {{ $main ?? null }}
                     </div>
-                </aside> --}}
+                </aside>
 
                 <!-- Extended column -->
                 {{-- <section aria-labelledby="main-heading"

@@ -6,7 +6,7 @@
     </x-slot>
 
     <x-slot name="actions">
-        {{-- @livewire('connectors.connector-add') --}}
+        @livewire('connectors.connector-add')
     </x-slot>
 
     <x-slot name="main">
