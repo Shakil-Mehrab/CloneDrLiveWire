@@ -8,6 +8,7 @@ trait ShopifyValidationRule
 {
     protected function urlRules()
     {
+
         return ['required', 'url', 'active_url', new UniqueHost()];
     }
 }

@@ -65,7 +65,7 @@
     <div class="flex flex-col h-screen overflow-hidden bg-gray-100">
         @include('layouts.navigation')
 
-        {{-- @impersonating($guard = null)
+        @impersonating($guard = null)
         <div
             class="fixed px-3 py-2 text-sm text-center text-gray-100 bg-red-500 border rounded-md shadow-md top-5 left-1/2">
             <div class="flex items-center justify-between">
@@ -81,7 +81,7 @@
                     class="inline-flex items-center px-4 py-2 ml-3 text-xs font-semibold tracking-widest uppercase transition duration-150 ease-in-out bg-red-800 border rounded-md focus:outline-none disabled:opacity-25 hover:bg-white hover:text-red-800">Leave</a>
             </div>
         </div>
-        @endImpersonating --}}
+        @endImpersonating
 
         <div class="flex flex-1 min-h-0 overflow-hidden">
             @include('layouts.sidebar')

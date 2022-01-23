@@ -6,7 +6,7 @@ use App\Models\Connector;
 use Illuminate\Contracts\Validation\Rule;
 use Illuminate\Support\Str;
 
-class UniqueHost  implements Rule
+class UniqueHost implements Rule
 {
     public function passes($attribute, $value)
     {
